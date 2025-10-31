@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://k1t38hd8do6s"]
-
-[ext_resource type="Script" uid="uid://dw61r5pkkdq28" path="res://Scenes/EthnicityDetection/EthnicityDetectionController.gd" id="1_controller"]
+[gd_scene format=3 uid="uid://k1t38hd8do6s"]
 
 [node name="EthnicityDetection" type="Control"]
 layout_mode = 3
@@ -9,7 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_controller")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -34,7 +31,7 @@ grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="MainContainer"]
 layout_mode = 2
-text = "Deteksi Etnis Indonesia"
+text = "Real-Time Hairstyle Try-On"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -112,49 +109,9 @@ grow_vertical = 2
 border_color = Color(0, 1, 0, 0)
 border_width = 3.0
 
-[node name="StatusContainer" type="VBoxContainer" parent="MainContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="StatusLabel" type="Label" parent="MainContainer/StatusContainer"]
-layout_mode = 2
-text = "Mencari wajah..."
-horizontal_alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="MainContainer/StatusContainer"]
-custom_minimum_size = Vector2(300, 30)
-layout_mode = 2
-
-[node name="ResultContainer" type="VBoxContainer" parent="MainContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="EthnicityLabel" type="Label" parent="MainContainer/ResultContainer"]
-layout_mode = 2
-text = "Etnis Terdeteksi: Jawa"
-horizontal_alignment = 1
-
-[node name="DescriptionLabel" type="RichTextLabel" parent="MainContainer/ResultContainer"]
-custom_minimum_size = Vector2(600, 150)
-layout_mode = 2
-text = "[b]Etnis Jawa[/b]
-Suku Jawa adalah kelompok etnik terbesar di Indonesia yang berasal dari Jawa Tengah dan Jawa Timur. Dikenal dengan budaya yang kaya, termasuk batik, wayang, dan gamelan."
-fit_content = true
-
-[node name="RedirectLabel" type="Label" parent="MainContainer/ResultContainer"]
-layout_mode = 2
-text = "Mengarahkan ke region budaya yang sesuai..."
-horizontal_alignment = 1
-
 [node name="ButtonContainer" type="HBoxContainer" parent="MainContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="StartDetectionButton" type="Button" parent="MainContainer/ButtonContainer"]
-custom_minimum_size = Vector2(150, 50)
-layout_mode = 2
-text = "Mulai Deteksi"
 
 [node name="BackButton" type="Button" parent="MainContainer/ButtonContainer"]
 custom_minimum_size = Vector2(150, 50)
@@ -205,5 +162,4 @@ layout_mode = 2
 text = "Memuat pengalaman budaya..."
 horizontal_alignment = 1
 
-[connection signal="pressed" from="MainContainer/ButtonContainer/StartDetectionButton" to="." method="_on_start_detection_pressed"]
 [connection signal="pressed" from="MainContainer/ButtonContainer/BackButton" to="." method="_on_back_pressed"]

@@ -1,12 +1,5 @@
 extends Control
 
-@onready var status_label = $MainContainer/StatusContainer/StatusLabel
-@onready var progress_bar = $MainContainer/StatusContainer/ProgressBar
-@onready var result_container = $MainContainer/ResultContainer
-@onready var ethnicity_label = $MainContainer/ResultContainer/EthnicityLabel
-@onready var description_label = $MainContainer/ResultContainer/DescriptionLabel
-@onready var redirect_label = $MainContainer/ResultContainer/RedirectLabel
-@onready var start_button = $MainContainer/ButtonContainer/StartDetectionButton
 @onready var loading_overlay = $LoadingOverlay
 @onready var face_frame = $MainContainer/CameraContainer/WebcamContainer/WebcamFeed/DetectionOverlay/FaceFrame
 @onready var webcam_feed = $MainContainer/CameraContainer/WebcamContainer/WebcamFeed
@@ -16,35 +9,8 @@ extends Control
 # Webcam Manager - akan di-load secara manual
 var webcam_manager: Node
 
-var detection_timer: Timer
-var redirect_timer: Timer
-var detection_progress: float = 0.0
-var is_detecting: bool = false
-var detected_ethnicity_result: String = ""
 var spinner_rotation: float = 0.0
 var webcam_frames_received: int = 0
-
-# Simulasi data etnis
-var ethnicity_data = {
-	"Jawa": {
-		"description": "[b]Etnis Jawa[/b]\nSuku Jawa adalah kelompok etnik terbesar di Indonesia yang berasal dari Jawa Tengah dan Jawa Timur. Dikenal dengan budaya yang kaya, termasuk batik, wayang, dan gamelan.",
-		"scene": "res://Scenes/IndonesiaBarat/PasarScene.tscn"
-	},
-	"Batak": {
-		"description": "[b]Etnis Batak[/b]\nSuku Batak berasal dari Sumatera Utara dengan tradisi musik gondang dan tarian tortor. Memiliki sistem kekerabatan patrilineal yang kuat.",
-		"scene": "res://Scenes/IndonesiaBarat/PasarScene.tscn"
-	},
-	"Sasak": {
-		"description": "[b]Etnis Sasak[/b]\nSuku Sasak adalah penduduk asli Pulau Lombok dengan tradisi tenun songket dan upacara peresean (pertarungan rotan).",
-		"scene": "res://Scenes/IndonesiaTengah/TamboraScene.tscn"
-	},
-	"Papua": {
-		"description": "[b]Etnis Papua[/b]\nSuku Papua memiliki keberagaman budaya yang luar biasa dengan tradisi ukiran, tarian yospan, dan upacara bakar batu.",
-		"scene": "res://Scenes/IndonesiaTimur/PapuaScene.tscn"
-	}
-}
-
-func _ready():
 	print("=== EthnicityDetectionController._ready() ===")
 	print("Scene tree ready, setting up webcam...")
 	
@@ -231,103 +197,6 @@ func _process(delta):
 			spinner_rotation -= 360
 		loading_spinner.rotation_degrees = spinner_rotation
 
-func setup_timers():
-	# Timer untuk simulasi deteksi (lebih cepat)
-	detection_timer = Timer.new()
-	detection_timer.wait_time = 0.05  # Lebih cepat
-	detection_timer.timeout.connect(_on_detection_progress)
-	add_child(detection_timer)
-	
-	# Timer untuk redirect
-	redirect_timer = Timer.new()
-	redirect_timer.wait_time = 2.0  # Dikurangi dari 3 detik
-	redirect_timer.timeout.connect(_on_redirect_to_scene)
-	redirect_timer.one_shot = true
-	add_child(redirect_timer)
-
-func reset_ui():
-	progress_bar.value = 0
-	detection_progress = 0.0
-	is_detecting = false
-	result_container.visible = false
-	status_label.text = "Mencari wajah..."
-	start_button.text = "Mulai Deteksi"
-	face_frame.border_color = Color(0, 1, 0, 0)
-
-func _on_start_detection_pressed():
-	if not is_detecting:
-		start_detection()
-	else:
-		stop_detection()
-
-func start_detection():
-	is_detecting = true
-	start_button.text = "Hentikan Deteksi"
-	result_container.visible = false
-	detection_progress = 0.0
-	progress_bar.value = 0
-	status_label.text = "Mendeteksi wajah..."
-	face_frame.border_color = Color(1, 1, 0, 0.8)
-	detection_timer.start()
-
-func stop_detection():
-	is_detecting = false
-	start_button.text = "Mulai Deteksi"
-	detection_timer.stop()
-	reset_ui()
-
-func _on_detection_progress():
-	if not is_detecting:
-		return
-	
-	# Progress lebih cepat
-	detection_progress += randf_range(2.0, 4.0)
-	progress_bar.value = min(detection_progress, 100.0)
-	
-	if detection_progress >= 100.0:
-		detection_complete()
-
-func detection_complete():
-	detection_timer.stop()
-	is_detecting = false
-	
-	# Simulasi hasil deteksi (random)
-	var ethnicity_names = ethnicity_data.keys()
-	detected_ethnicity_result = ethnicity_names[randi() % ethnicity_names.size()]
-	
-	# Update UI dengan hasil
-	face_frame.border_color = Color(0, 1, 0, 0.8)
-	status_label.text = "Deteksi berhasil!"
-	ethnicity_label.text = "Etnis Terdeteksi: " + detected_ethnicity_result
-	description_label.text = ethnicity_data[detected_ethnicity_result]["description"]
-	
-	result_container.visible = true
-	start_button.visible = false
-	
-	# Mulai countdown redirect (lebih cepat)
-	redirect_timer.start()
-	redirect_label.text = "Mengarahkan ke region budaya yang sesuai dalam 2 detik..."
-	
-	# Animate countdown
-	create_countdown_animation()
-
-func create_countdown_animation():
-	var countdown_timer = Timer.new()
-	countdown_timer.wait_time = 1.0
-	add_child(countdown_timer)
-	
-	var countdown_data = [2]  # Mulai dari 2 detik
-	countdown_timer.timeout.connect(func():
-		countdown_data[0] -= 1
-		if countdown_data[0] > 0:
-			redirect_label.text = "Mengarahkan ke region budaya yang sesuai dalam " + str(countdown_data[0]) + " detik..."
-		else:
-			redirect_label.text = "Memuat pengalaman budaya..."
-			countdown_timer.queue_free()
-	)
-	countdown_timer.start()
-
-func _on_redirect_to_scene():
 	# Tampilkan loading overlay dengan animasi
 	loading_overlay.visible = true
 	spinner_rotation = 0.0
@@ -358,7 +227,7 @@ func _on_back_pressed():
 func cleanup_resources():
 	"""Bersihkan resources sebelum keluar"""
 	print("=== Cleaning up resources ===")
-	
+
 	if webcam_manager:
 		print("Disconnecting webcam manager...")
 		if webcam_manager.has_method("disconnect_from_server"):
@@ -366,13 +235,10 @@ func cleanup_resources():
 		if is_inside_tree():
 			webcam_manager.queue_free()
 		webcam_manager = null
-	
-	if detection_timer:
-		detection_timer.stop()
-	
-	if redirect_timer:
-		redirect_timer.stop()
-	
+
+	# Hapus baris detection_timer.stop()
+	# Hapus baris redirect_timer.stop()
+
 	print("Cleanup complete")
 
 func _notification(what):
