@@ -1,0 +1,11 @@
+# Godot 4+
+.godot/
+
+# Hasil ekspor
+*.pck
+*.exe
+*.html
+
+# File sensitif (jika ada)
+export_presets.cfg
+.env
