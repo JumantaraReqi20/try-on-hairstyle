@@ -1,6 +1,87 @@
-[gd_scene load_steps=2 format=3 uid="uid://2asq8iaoegxj"]
+[gd_scene load_steps=16 format=3 uid="uid://2asq8iaoegxj"]
 
 [ext_resource type="Script" path="res://Scripts/webcam_client_udp.gd" id="1_gc4w6"]
+[ext_resource type="Texture2D" uid="uid://dn8g00lhujf23" path="res://Assets/trifur-barber.png" id="2_488pw"]
+[ext_resource type="Texture2D" uid="uid://bclrdw5307uh2" path="res://Assets/webcam-disconnected.png" id="3_a0861"]
+[ext_resource type="Shader" path="res://Scripts/webcam_client_udp.gdshader" id="3_fm5cj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yfvd"]
+bg_color = Color(0.145098, 0.168627, 0.207843, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_tilv7"]
+font_size = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2so3"]
+bg_color = Color(0.054902, 0.572549, 0.47451, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im1o3"]
+bg_color = Color(0.0470588, 0.803922, 0.627451, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw7vf"]
+bg_color = Color(0.564706, 0.00784314, 0.00784314, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoy0q"]
+bg_color = Color(0.811765, 0.137255, 0.368627, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfu17"]
+bg_color = Color(0.0470588, 0.803922, 0.627451, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47phr"]
+bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pnq3"]
+bg_color = Color(0.054902, 0.572549, 0.47451, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhaug"]
+bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s28yg"]
+shader = ExtResource("3_fm5cj")
 
 [node name="WebcamClient" type="Control"]
 layout_mode = 3
@@ -15,46 +96,53 @@ script = ExtResource("1_gc4w6")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.15, 0.15, 0.15, 1)
+color = Color(0.0509804, 0.0941176, 0.160784, 1)
 
 [node name="Title" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -150.0
-offset_top = 20.0
-offset_right = 150.0
-offset_bottom = 50.0
-text = "Webcam Streaming Client (UDP)"
-horizontal_alignment = 1
+offset_left = -496.0
+offset_top = 27.0
+offset_right = -196.0
+offset_bottom = 57.0
+grow_horizontal = 2
+text = "Trifur Barber"
 
 [node name="StatusLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 60.0
-offset_right = 600.0
-offset_bottom = 85.0
+offset_left = 706.0
+offset_top = 78.0
+offset_right = 1256.0
+offset_bottom = 103.0
 text = "Status: Disconnected"
 
 [node name="ServerInfo" type="Label" parent="."]
 modulate = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 0
-offset_left = 700.0
-offset_top = 60.0
-offset_right = 950.0
-offset_bottom = 85.0
+offset_left = 242.0
+offset_top = 487.0
+offset_right = 492.0
+offset_bottom = 512.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Server: 127.0.0.1:8888 (UDP)"
+horizontal_alignment = 1
 
 [node name="VideoContainer" type="Panel" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -200.0
-offset_right = 320.0
-offset_bottom = 200.0
+offset_left = -548.0
+offset_top = -248.0
+offset_right = 92.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3yfvd")
 
 [node name="TextureRect" type="TextureRect" parent="VideoContainer"]
 layout_mode = 1
@@ -71,32 +159,58 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 259.0
+offset_top = 191.25
+offset_right = -235.0
+offset_bottom = -175.75
 grow_horizontal = 2
 grow_vertical = 2
-text = "No Signal
-(UDP Mode)"
+text = "No Signal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoSignalLabel2" type="Label" parent="VideoContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 272.0
+offset_top = 212.25
+offset_right = -247.0
+offset_bottom = -152.75
+grow_horizontal = 2
+grow_vertical = 2
+text = "(UDP Mode)"
+label_settings = SubResource("LabelSettings_tilv7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ControlPanel" type="HBoxContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -70.0
-offset_right = 120.0
-offset_bottom = -40.0
+offset_left = -546.0
+offset_top = -107.0
+offset_right = -306.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="ConnectButton" type="Button" parent="ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Connect to Server"
+theme_override_styles/hover = SubResource("StyleBoxFlat_r2so3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_im1o3")
+text = "Connect"
 
 [node name="QuitButton" type="Button" parent="ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_sw7vf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xoy0q")
 text = "Quit"
 
 [node name="StylePanel" type="HBoxContainer" parent="."]
@@ -106,30 +220,34 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -120.0
-offset_top = -123.0
-offset_right = 120.0
-offset_bottom = -92.0
+offset_left = 128.0
+offset_top = -346.0
+offset_right = 368.0
+offset_bottom = -315.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="PrevStyleButton" type="Button" parent="StylePanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
 text = "Previous"
 
 [node name="NextStyleButton" type="Button" parent="StylePanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnq3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vhaug")
 text = "Next
 "
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 250.0
-offset_bottom = 200.0
+offset_left = 706.0
+offset_top = 118.0
+offset_right = 906.0
+offset_bottom = 218.0
 
 [node name="FPSLabel" type="Label" parent="InfoPanel"]
 layout_mode = 2
@@ -145,10 +263,10 @@ text = "Rate: -- KB/s"
 
 [node name="PerformanceInfo" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 700.0
-offset_top = 100.0
-offset_right = 900.0
-offset_bottom = 180.0
+offset_left = 704.0
+offset_top = 360.0
+offset_right = 904.0
+offset_bottom = 464.0
 
 [node name="ProtocolLabel" type="Label" parent="PerformanceInfo"]
 modulate = Color(0.7, 1, 0.7, 1)
@@ -169,3 +287,14 @@ text = "✓ No Handshake"
 modulate = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 2
 text = "✓ Real-time Streaming"
+
+[node name="Trifur-barber-plain" type="Sprite2D" parent="."]
+position = Vector2(50.125, 37.625)
+scale = Vector2(0.112256, 0.105748)
+texture = ExtResource("2_488pw")
+
+[node name="Webcam-disconnected" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_s28yg")
+position = Vector2(359, 241.25)
+scale = Vector2(0.0986328, 0.0947266)
+texture = ExtResource("3_a0861")
