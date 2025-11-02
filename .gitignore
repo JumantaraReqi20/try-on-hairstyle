@@ -5,6 +5,9 @@
 *.pck
 *.exe
 *.html
+data/faces/*
+data/non_faces/*
+
 
 # File sensitif (jika ada)
 export_presets.cfg
