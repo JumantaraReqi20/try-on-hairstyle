@@ -134,4 +134,7 @@ Proyek ini dikembangkan dan dikelola oleh:
 
 ## 💼 Komersialisasi
 
-Kami sedang aktif mengembangkan proyek ini untuk komersialisasi. Untuk pertanyaan bisnis, kemitraan, atau demo, silakan hubungi [Email Kontak Anda atau Ketua Tim].
+Kami saat ini sedang **aktif mengembangkan proyek ini untuk tujuan komersialisasi**.  
+Untuk pertanyaan bisnis, kemitraan, atau permintaan demo, silakan hubungi kami melalui email berikut:
+
+📧 **reqi.jumantara.tif423@polban.ac.id**.
