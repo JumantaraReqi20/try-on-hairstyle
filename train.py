@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 POS_DIR = Path("data/faces")
 NEG_DIR = Path("data/non_faces")
 MODEL_DIR = Path("models")
-MODEL_DIR.mkdir(exist_ok=True)  # Buat folder /models jika belum ada
+MODEL_DIR.mkdir(exist_ok=True)
 
 # Konfigurasi Model
 K_CLUSTERS = 512      # Jumlah "kata" dalam kamus BoVW
@@ -38,6 +38,7 @@ def extract_descriptors(img_path, orb, size=IMG_SIZE):
         
         # Standarisasi ukuran gambar
         img = cv2.resize(img, size, interpolation=cv2.INTER_AREA)
+        img = cv2.equalizeHist(img)
         
         keypoints, descriptors = orb.detectAndCompute(img, None)
         return descriptors
