@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpr0tr8u23trn"]
+[gd_scene load_steps=7 format=3 uid="uid://dpr0tr8u23trn"]
 
 [ext_resource type="Texture2D" uid="uid://cce0042dnwqql" path="res://Assets/credit-bg.png" id="1_xgu3v"]
+[ext_resource type="Script" uid="uid://c5exm0mtxnapn" path="res://Scripts/credit.gd" id="1_xpddk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p3k7"]
 modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
@@ -37,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xpddk")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -47,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_2p3k7")
 
-[node name="Baliak" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 960.0
 offset_top = 27.0
@@ -66,3 +68,5 @@ z_index = -10
 position = Vector2(575.5, 324)
 scale = Vector2(0.749349, 0.632813)
 texture = ExtResource("1_xgu3v")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
