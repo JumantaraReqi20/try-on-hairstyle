@@ -12,3 +12,6 @@ data/non_faces/*
 # File sensitif (jika ada)
 export_presets.cfg
 .env
+
+venv
+__pycache__

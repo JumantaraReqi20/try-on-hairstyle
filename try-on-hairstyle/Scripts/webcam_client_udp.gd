@@ -5,11 +5,11 @@ extends Control
 @onready var connect_button: Button = $ControlPanel/ConnectButton
 @onready var quit_button: Button = $ControlPanel/QuitButton
 @onready var no_signal_label: Label = $VideoContainer/NoSignalLabel
+@onready var udp_mode_label: Label = $VideoContainer/UDPMode
+@onready var webcam_disconnected_icon: Sprite2D = $"VideoContainer/Webcam-disconnected"
 @onready var fps_label: Label = $InfoPanel/FPSLabel
 @onready var resolution_label: Label = $InfoPanel/ResolutionLabel
 @onready var data_rate_label: Label = $InfoPanel/DataRateLabel
-@onready var prev_style_button: Button = $StylePanel/PrevStyleButton
-@onready var next_style_button: Button = $StylePanel/NextStyleButton
 
 var udp_client: PacketPeerUDP
 var is_connected: bool = false
@@ -41,8 +41,6 @@ func _ready():
 	# Connect button signals
 	connect_button.pressed.connect(_on_connect_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
-	prev_style_button.pressed.connect(_on_prev_style_pressed)
-	next_style_button.pressed.connect(_on_next_style_pressed)
 	
 	# Update status
 	update_status("Ready to connect")
@@ -50,25 +48,23 @@ func _ready():
 	
 	# Show no signal initially
 	no_signal_label.visible = true
+	udp_mode_label.visible = true
+	webcam_disconnected_icon.visible = true
 	
 	# Debug info
 	print("🎮 Godot UDP client initialized")
 	print("Target server: ", server_host, ":", server_port)
 
 func _on_quit_button_pressed():
-	get_tree().quit()
-
-func _on_prev_style_pressed():
 	if is_connected:
-		var message = "PREV_HAIR".to_utf8_buffer()
-		udp_client.put_packet(message)
-		print("Mengirim perintah: PREV_HAIR")
+		disconnect_from_server()
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
-func _on_next_style_pressed():
+func _on_style_button_pressed(style_name: String):
 	if is_connected:
-		var message = "NEXT_HAIR".to_utf8_buffer()
+		var message = ("SET_HAIR:" + style_name).to_utf8_buffer()
 		udp_client.put_packet(message)
-		print("Mengirim perintah: NEXT_HAIR")
+		print("Mengirim perintah: SET_HAIR:", style_name)
 
 func _process(delta):
 	if is_connected:
@@ -163,6 +159,8 @@ func disconnect_from_server():
 	# Clear texture and show no signal
 	texture_rect.texture = null
 	no_signal_label.visible = true
+	udp_mode_label.visible = true
+	webcam_disconnected_icon.visible = true
 	
 	# Reset performance metrics
 	frame_count = 0
@@ -248,7 +246,7 @@ func assemble_and_display_frame(sequence_number: int):
 	# Debug info setiap 30 frame
 	if frames_completed % 30 == 0:
 		var drop_rate = float(frames_dropped) / float(frames_completed + frames_dropped) * 100.0
-		print("📊 Frame ", sequence_number, " completed. Drop rate: %.1f%%" % drop_rate)
+		print("📊 Frame ", sequence_number, " completed.\nDrop rate: %.1f%%" % drop_rate)
 
 func cleanup_old_frames():
 	var current_time = Time.get_ticks_msec() / 1000.0
@@ -285,6 +283,8 @@ func display_frame(frame_data: PackedByteArray):
 		# Tampilkan di TextureRect
 		texture_rect.texture = texture
 		no_signal_label.visible = false
+		udp_mode_label.visible = false
+		webcam_disconnected_icon.visible = false
 		
 		# Update resolution info
 		resolution_label.text = "Resolution: %dx%d" % [image.get_width(), image.get_height()]

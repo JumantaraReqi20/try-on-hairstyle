@@ -25,7 +25,6 @@ IMG_SIZE = (128, 128)
 ORB_FEATURES = 500
 
 # --- Fungsi Helper CV (dari run_webcam.py) ---
-# (Kita letakkan di luar class agar bersih)
 
 def create_orb_detector(n_features=ORB_FEATURES):
     return cv2.ORB_create(nfeatures=n_features)
@@ -51,7 +50,6 @@ def compute_bovw_histogram(descriptors, codebook):
     return hist
 
 def overlay_hairstyle(frame, hairstyle_img, face_box, y_offset_factor=0.6, scale_factor=1.5):
-    # (Fungsi ini sama persis seperti di run_webcam.py)
     x, y, w, h = face_box
     hair_h_orig, hair_w_orig, _ = hairstyle_img.shape
     target_hair_w = int(w * scale_factor)
@@ -87,7 +85,7 @@ class SVM_WebcamServerUDP:
         self.host = host
         self.port = port
         self.server_socket = None
-        self.clients = set()  # Set untuk menyimpan alamat client (dari webcam_server_udp.py)
+        self.clients = set()  
         self.cap = None
         self.running = False
         self.sequence_number = 0
@@ -99,10 +97,14 @@ class SVM_WebcamServerUDP:
         self.codebook = None
         self.scaler = None
         self.svm = None
-        self.hairstyle_list = []
-        self.current_hairstyle_index = 0
         
-        # Variabel Smoothing (dari run_webcam.py)
+        # Variabel Hairstyle BARU
+        self.hairstyle_data = [] # List untuk menyimpan semua gambar hairstyle
+        self.hairstyle_name_to_index = {} # Map nama ke indeks
+        self.current_hairstyle_index = 0 # Index hairstyle yang aktif
+        self.is_hair_enabled = True # Flag untuk mengaktifkan/menonaktifkan overlay
+        
+        # Variabel Smoothing
         self.last_known_box = None
         self.frames_missed = 0
         self.MAX_FRAMES_MISS = 10
@@ -117,20 +119,29 @@ class SVM_WebcamServerUDP:
             self.scaler = joblib.load(MODEL_DIR / "scaler.pkl")
             self.svm = joblib.load(MODEL_DIR / "svm.pkl")
             
-            # Load hairstyles (dari run_webcam.py)
+            # Load hairstyles (DIUBAH)
+            self.hairstyle_data = []
+            self.hairstyle_name_to_index = {}
+            
             hairstyle_paths = sorted(list(ASSETS_DIR.glob("hairstyle_*.png")))
             if not hairstyle_paths:
                 raise IOError("Tidak ada file hairstyle (hairstyle_*.png) ditemukan.")
                 
-            for path in hairstyle_paths:
+            for i, path in enumerate(hairstyle_paths):
                 img = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
                 if img is not None and img.shape[2] == 4:
-                    self.hairstyle_list.append(img)
+                    # Ekstrak nama (misal: 'hairstyle_asgar.png' -> 'asgar')
+                    style_name = path.stem.replace("hairstyle_", "") 
+                    self.hairstyle_data.append(img)
+                    self.hairstyle_name_to_index[style_name] = i
             
-            if not self.hairstyle_list:
+            if not self.hairstyle_data:
                 raise IOError("Gagal memuat gambar hairstyle yang valid.")
                 
-            logging.info(f"Berhasil memuat {len(self.hairstyle_list)} hairstyle dan model CV.")
+            # Set index awal
+            self.current_hairstyle_index = 0
+
+            logging.info(f"Berhasil memuat {len(self.hairstyle_data)} hairstyle dan model CV. Tersedia: {list(self.hairstyle_name_to_index.keys())}")
             return True
             
         except Exception as e:
@@ -143,7 +154,7 @@ class SVM_WebcamServerUDP:
             return
             
         try:
-            # Buat UDP socket (dari webcam_server_udp.py)
+            # Buat UDP socket
             self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.server_socket.bind((self.host, self.port))
@@ -159,7 +170,7 @@ class SVM_WebcamServerUDP:
             
             self.running = True
             
-            # Thread untuk menerima pesan (REGISTER, NEXT_HAIR, dll)
+            # Thread untuk menerima pesan (REGISTER, SET_HAIR, dll)
             listen_thread = threading.Thread(target=self.listen_for_clients)
             listen_thread.start()
             
@@ -179,28 +190,51 @@ class SVM_WebcamServerUDP:
                 data, addr = self.server_socket.recvfrom(1024)
                 message = data.decode('utf-8')
                 
-                if message == "REGISTER": #
+                if message == "REGISTER": 
                     if addr not in self.clients:
                         self.clients.add(addr)
                         logging.info(f"✅ Client terdaftar: {addr} | Total: {len(self.clients)}")
                         self.server_socket.sendto("REGISTERED".encode('utf-8'), addr)
                 
-                elif message == "UNREGISTER": #
+                elif message == "UNREGISTER":
                     if addr in self.clients:
                         self.clients.remove(addr)
                         logging.info(f"🔌 Client keluar: {addr} | Total: {len(self.clients)}")
                 
-                # --- INI ADALAH MODIFIKASI KITA ---
+                # --- LOGIKA BARU UNTUK SET_HAIR: ---
+                elif message.startswith("SET_HAIR:"):
+                    if addr in self.clients:
+                        try:
+                            style_name = message.split(":")[1]
+                            
+                            if style_name == "none": # Perintah dari tombol Reset Hair
+                                self.is_hair_enabled = False
+                                logging.info(f"Client {addr} menonaktifkan hairstyle (Reset).")
+                            
+                            elif style_name in self.hairstyle_name_to_index:
+                                new_index = self.hairstyle_name_to_index[style_name]
+                                self.current_hairstyle_index = new_index
+                                self.is_hair_enabled = True
+                                logging.info(f"Client {addr} ganti ke hairstyle: {style_name} (Index: {new_index})")
+                            else:
+                                logging.warning(f"⚠️ Perintah SET_HAIR diterima, tapi gaya '{style_name}' tidak dikenal.")
+                            
+                        except IndexError:
+                            logging.warning("⚠️ Perintah SET_HAIR tidak lengkap.")
+                        
+                # --- LOGIKA LAMA (Masih dipertahankan untuk keamanan, diubah agar menggunakan self.hairstyle_data) ---
                 elif message == "NEXT_HAIR":
-                    if addr in self.clients: # Hanya client terdaftar yang bisa ganti
-                        self.current_hairstyle_index = (self.current_hairstyle_index + 1) % len(self.hairstyle_list)
-                        logging.info(f"Client {addr} ganti ke hairstyle {self.current_hairstyle_index + 1}")
+                    if addr in self.clients:
+                        self.current_hairstyle_index = (self.current_hairstyle_index + 1) % len(self.hairstyle_data)
+                        self.is_hair_enabled = True
+                        logging.info(f"Client {addr} ganti ke hairstyle berikutnya (Index: {self.current_hairstyle_index}).")
                 
                 elif message == "PREV_HAIR":
                     if addr in self.clients:
-                        self.current_hairstyle_index = (self.current_hairstyle_index - 1) % len(self.hairstyle_list)
-                        logging.info(f"Client {addr} ganti ke hairstyle {self.current_hairstyle_index + 1}")
-                # --- BATAS MODIFIKASI ---
+                        self.current_hairstyle_index = (self.current_hairstyle_index - 1) % len(self.hairstyle_data)
+                        self.is_hair_enabled = True
+                        logging.info(f"Client {addr} ganti ke hairstyle sebelumnya (Index: {self.current_hairstyle_index}).")
+                # --- BATAS LOGIKA BARU ---
 
             except socket.timeout:
                 continue
@@ -209,10 +243,7 @@ class SVM_WebcamServerUDP:
                     logging.warning(f"⚠️ Error di listen_thread: {e}")
 
     def stream_webcam_cv(self):
-        """
-        Ini adalah gabungan dari run_webcam.py (logika CV) 
-        dan stream_webcam dari webcam_server_udp.py (logika encoding).
-        """
+        """Proses CV dan mengirim frame."""
         while self.running:
             try:
                 if len(self.clients) == 0:
@@ -227,9 +258,9 @@ class SVM_WebcamServerUDP:
                 frame = cv2.flip(frame, 1)
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 
-                # --- Mulai Logika CV dari run_webcam.py ---
+                # --- Logika CV ---
                 kandidat_wajah = self.haar_cascade.detectMultiScale(
-                    gray, 1.2, 4, minSize=(80, 80) # Pakai minNeighbors=4 agar lebih stabil
+                    gray, 1.2, 4, minSize=(80, 80)
                 )
                 
                 validated_faces = []
@@ -254,23 +285,23 @@ class SVM_WebcamServerUDP:
                     self.last_known_box = None
                     self.frames_missed = 0
                 
-                # Ambil hairstyle yang aktif
-                active_hairstyle = self.hairstyle_list[self.current_hairstyle_index]
+                # --- LOGIKA BARU UNTUK OVERLAY (hanya jika is_hair_enabled = True) ---
+                if self.is_hair_enabled and len(self.hairstyle_data) > 0:
+                    active_hairstyle = self.hairstyle_data[self.current_hairstyle_index]
 
-                if current_box_to_draw is not None:
-                    # Terapkan overlay ke frame
-                    frame = overlay_hairstyle(
-                        frame,
-                        active_hairstyle,
-                        current_box_to_draw,
-                        y_offset_factor=0.45,
-                        scale_factor=1
-                    )
+                    if current_box_to_draw is not None:
+                        # Terapkan overlay ke frame
+                        frame = overlay_hairstyle(
+                            frame,
+                            active_hairstyle,
+                            current_box_to_draw,
+                            y_offset_factor=0.45,
+                            scale_factor=1
+                        )
                 # --- Selesai Logika CV ---
                 
                 # Encode frame (yang sudah di-overlay) ke JPEG
-                # (dari webcam_server_udp.py)
-                encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50] # Kualitas 50% untuk kecepatan
+                encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50] 
                 result, encoded_img = cv2.imencode('.jpg', frame, encode_param)
                 
                 if result:
@@ -278,21 +309,21 @@ class SVM_WebcamServerUDP:
                     # Kirim frame ter-encode via UDP
                     self.send_frame_to_clients(frame_data)
                 
-                time.sleep(0.033)  # Target ~30 FPS
+                time.sleep(0.033) 
 
             except Exception as e:
                 logging.error(f"❌ Error di stream_thread: {e}")
                 break
 
     def send_frame_to_clients(self, frame_data):
-        """Mengirim frame data ke semua client dengan fragmentasi (dari webcam_server_udp.py)."""
+        """Mengirim frame data ke semua client dengan fragmentasi."""
         if not frame_data or len(self.clients) == 0:
             return
         
         self.sequence_number = (self.sequence_number + 1) % 65536
         frame_size = len(frame_data)
         
-        header_size = 12  # 4b seq + 4b total + 4b index
+        header_size = 12 
         payload_size = self.max_packet_size - header_size
         total_packets = math.ceil(frame_size / payload_size)
         
