@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b67yunolnlsge"]
+
+[ext_resource type="AudioStream" uid="uid://d25gobk8qcpci" path="res://Assets/Audio/Luke-Bergs-Tropical-Soulmp3(chosic.com).mp3" id="1_f2xla"]
+
+[node name="SoundManager" type="Node2D"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_f2xla")
