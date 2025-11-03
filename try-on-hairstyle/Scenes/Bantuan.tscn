@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://sxoelmp5gtpv"]
+
+[ext_resource type="Script" path="res://Scripts/bantuan.gd" id="1_gpc5q"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7aj0r"]
+modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awn2o"]
+bg_color = Color(0.907942, 0.907942, 0.907942, 0.345098)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpum3"]
+bg_color = Color(0, 0, 0, 0.345098)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74257"]
+bg_color = Color(0, 0, 0, 0.345098)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Bantuan" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gpc5q")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_7aj0r")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 148.0
+offset_bottom = 76.0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_awn2o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bpum3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_74257")
+text = "Baliak"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

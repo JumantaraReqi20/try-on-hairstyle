@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpr0tr8u23trn"]
+
+[ext_resource type="Texture2D" uid="uid://cce0042dnwqql" path="res://Assets/credit-bg.png" id="1_xgu3v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p3k7"]
+modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4khf"]
+bg_color = Color(0.907942, 0.907942, 0.907942, 0.345098)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwsny"]
+bg_color = Color(0, 0, 0, 0.345098)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko6u1"]
+bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Credit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_2p3k7")
+
+[node name="Baliak" type="Button" parent="."]
+layout_mode = 0
+offset_left = 960.0
+offset_top = 27.0
+offset_right = 1109.0
+offset_bottom = 76.0
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_a4khf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hwsny")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ko6u1")
+text = "Back"
+
+[node name="Credit-bg" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(575.5, 324)
+scale = Vector2(0.749349, 0.632813)
+texture = ExtResource("1_xgu3v")

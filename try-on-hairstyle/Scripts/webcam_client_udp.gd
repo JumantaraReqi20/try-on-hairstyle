@@ -5,6 +5,8 @@ extends Control
 @onready var connect_button: Button = $ControlPanel/ConnectButton
 @onready var quit_button: Button = $ControlPanel/QuitButton
 @onready var no_signal_label: Label = $VideoContainer/NoSignalLabel
+@onready var udp_mode_label: Label = $VideoContainer/UDPMode
+@onready var webcam_disconnected_icon: Sprite2D = $"VideoContainer/Webcam-disconnected"
 @onready var fps_label: Label = $InfoPanel/FPSLabel
 @onready var resolution_label: Label = $InfoPanel/ResolutionLabel
 @onready var data_rate_label: Label = $InfoPanel/DataRateLabel
@@ -50,13 +52,17 @@ func _ready():
 	
 	# Show no signal initially
 	no_signal_label.visible = true
+	udp_mode_label.visible = true
+	webcam_disconnected_icon.visible = true
 	
 	# Debug info
 	print("🎮 Godot UDP client initialized")
 	print("Target server: ", server_host, ":", server_port)
 
 func _on_quit_button_pressed():
-	get_tree().quit()
+	if is_connected:
+		disconnect_from_server()  # pastikan koneksi diputus dulu biar bersih
+	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 func _on_prev_style_pressed():
 	if is_connected:
@@ -163,6 +169,8 @@ func disconnect_from_server():
 	# Clear texture and show no signal
 	texture_rect.texture = null
 	no_signal_label.visible = true
+	udp_mode_label.visible = true
+	webcam_disconnected_icon.visible = true
 	
 	# Reset performance metrics
 	frame_count = 0
@@ -285,6 +293,8 @@ func display_frame(frame_data: PackedByteArray):
 		# Tampilkan di TextureRect
 		texture_rect.texture = texture
 		no_signal_label.visible = false
+		udp_mode_label.visible = false
+		webcam_disconnected_icon.visible = false
 		
 		# Update resolution info
 		resolution_label.text = "Resolution: %dx%d" % [image.get_width(), image.get_height()]

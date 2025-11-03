@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=3 uid="uid://2asq8iaoegxj"]
 
-[ext_resource type="Script" path="res://Scripts/webcam_client_udp.gd" id="1_gc4w6"]
-[ext_resource type="Texture2D" uid="uid://dn8g00lhujf23" path="res://Assets/trifur-barber.png" id="2_488pw"]
-[ext_resource type="Texture2D" uid="uid://bclrdw5307uh2" path="res://Assets/webcam-disconnected.png" id="3_a0861"]
-[ext_resource type="Shader" path="res://Scripts/webcam_client_udp.gdshader" id="3_fm5cj"]
+[ext_resource type="Script" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
+[ext_resource type="Shader" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
+[ext_resource type="Texture2D" uid="uid://bclrdw5307uh2" path="res://Assets/webcam-disconnected.png" id="3_phcxq"]
+[ext_resource type="Texture2D" uid="uid://dn8g00lhujf23" path="res://Assets/trifur-barber.png" id="4_l4pri"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yfvd"]
 bg_color = Color(0.145098, 0.168627, 0.207843, 1)
@@ -14,6 +14,9 @@ corner_radius_bottom_left = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_tilv7"]
 font_size = 11
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s28yg"]
+shader = ExtResource("2_l2ytg")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2so3"]
 bg_color = Color(0.054902, 0.572549, 0.47451, 1)
@@ -80,9 +83,6 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s28yg"]
-shader = ExtResource("3_fm5cj")
-
 [node name="WebcamClient" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -90,7 +90,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_gc4w6")
+script = ExtResource("1_2bigl")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
@@ -169,7 +169,7 @@ text = "No Signal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NoSignalLabel2" type="Label" parent="VideoContainer"]
+[node name="UDPMode" type="Label" parent="VideoContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -184,6 +184,12 @@ text = "(UDP Mode)"
 label_settings = SubResource("LabelSettings_tilv7")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Webcam-disconnected" type="Sprite2D" parent="VideoContainer"]
+material = SubResource("ShaderMaterial_s28yg")
+position = Vector2(331, 165.25)
+scale = Vector2(0.0986328, 0.0947266)
+texture = ExtResource("3_phcxq")
 
 [node name="ControlPanel" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -291,10 +297,4 @@ text = "✓ Real-time Streaming"
 [node name="Trifur-barber-plain" type="Sprite2D" parent="."]
 position = Vector2(50.125, 37.625)
 scale = Vector2(0.112256, 0.105748)
-texture = ExtResource("2_488pw")
-
-[node name="Webcam-disconnected" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_s28yg")
-position = Vector2(359, 241.25)
-scale = Vector2(0.0986328, 0.0947266)
-texture = ExtResource("3_a0861")
+texture = ExtResource("4_l4pri")
