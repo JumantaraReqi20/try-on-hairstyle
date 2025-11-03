@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2asq8iaoegxj"]
+[gd_scene load_steps=14 format=3 uid="uid://2asq8iaoegxj"]
 
 [ext_resource type="Script" uid="uid://cs1naqvlukefv" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
 [ext_resource type="Shader" uid="uid://bk3hemnl4wb03" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
@@ -65,24 +65,6 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pnq3"]
-bg_color = Color(0.054902, 0.572549, 0.47451, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhaug"]
-bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
-
 [node name="WebcamClient" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -93,9 +75,12 @@ grow_vertical = 2
 script = ExtResource("1_2bigl")
 
 [node name="Background" type="ColorRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.0509804, 0.0941176, 0.160784, 1)
 
 [node name="Title" type="Label" parent="."]
@@ -112,19 +97,19 @@ text = "Trifur Barber"
 
 [node name="StatusLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 706.0
-offset_top = 78.0
-offset_right = 1256.0
-offset_bottom = 103.0
+offset_left = 67.0
+offset_top = 518.0
+offset_right = 617.0
+offset_bottom = 543.0
 text = "Status: Disconnected"
 
 [node name="ServerInfo" type="Label" parent="."]
 modulate = Color(0.8, 0.8, 0.8, 1)
 layout_mode = 0
-offset_left = 242.0
-offset_top = 487.0
-offset_right = 492.0
-offset_bottom = 512.0
+offset_left = 221.0
+offset_top = 486.0
+offset_right = 471.0
+offset_bottom = 511.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Server: 127.0.0.1:8888 (UDP)"
 horizontal_alignment = 1
@@ -198,10 +183,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -546.0
-offset_top = -107.0
-offset_right = -306.0
-offset_bottom = -76.0
+offset_left = 221.0
+offset_top = -553.0
+offset_right = 461.0
+offset_bottom = -522.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -219,41 +204,54 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_sw7vf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xoy0q")
 text = "Quit"
 
-[node name="StylePanel" type="HBoxContainer" parent="."]
+[node name="StyleChooser" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 128.0
-offset_top = -346.0
-offset_right = 368.0
-offset_bottom = -315.0
+offset_left = 132.0
+offset_top = -481.0
+offset_right = 539.0
+offset_bottom = -285.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 10
 
-[node name="PrevStyleButton" type="Button" parent="StylePanel"]
+[node name="StyleButton1" type="Button" parent="StyleChooser"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
-text = "Previous"
+text = "Asgar"
 
-[node name="NextStyleButton" type="Button" parent="StylePanel"]
+[node name="StyleButton2" type="Button" parent="StyleChooser"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/hover = SubResource("StyleBoxFlat_2pnq3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vhaug")
-text = "Next
-"
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
+text = "Comma Hair"
+
+[node name="StyleButton3" type="Button" parent="StyleChooser"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
+text = "French Crop"
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 706.0
-offset_top = 118.0
-offset_right = 906.0
-offset_bottom = 218.0
+offset_left = 72.0
+offset_top = 546.0
+offset_right = 272.0
+offset_bottom = 646.0
 
 [node name="FPSLabel" type="Label" parent="InfoPanel"]
 layout_mode = 2
@@ -269,10 +267,10 @@ text = "Rate: -- KB/s"
 
 [node name="PerformanceInfo" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 704.0
-offset_top = 360.0
-offset_right = 904.0
-offset_bottom = 464.0
+offset_left = 434.0
+offset_top = 521.0
+offset_right = 634.0
+offset_bottom = 625.0
 
 [node name="ProtocolLabel" type="Label" parent="PerformanceInfo"]
 modulate = Color(0.7, 1, 0.7, 1)
@@ -298,3 +296,7 @@ text = "✓ Real-time Streaming"
 position = Vector2(50.125, 37.625)
 scale = Vector2(0.112256, 0.105748)
 texture = ExtResource("4_l4pri")
+
+[connection signal="pressed" from="StyleChooser/StyleButton1" to="." method="_on_style_button_pressed" binds= ["asgar"]]
+[connection signal="pressed" from="StyleChooser/StyleButton2" to="." method="_on_style_button_pressed" binds= ["commaHair"]]
+[connection signal="pressed" from="StyleChooser/StyleButton3" to="." method="_on_style_button_pressed" binds= ["frenchCrop"]]

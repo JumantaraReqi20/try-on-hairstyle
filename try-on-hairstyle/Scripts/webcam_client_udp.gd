@@ -10,8 +10,6 @@ extends Control
 @onready var fps_label: Label = $InfoPanel/FPSLabel
 @onready var resolution_label: Label = $InfoPanel/ResolutionLabel
 @onready var data_rate_label: Label = $InfoPanel/DataRateLabel
-@onready var prev_style_button: Button = $StylePanel/PrevStyleButton
-@onready var next_style_button: Button = $StylePanel/NextStyleButton
 
 var udp_client: PacketPeerUDP
 var is_connected: bool = false
@@ -43,8 +41,6 @@ func _ready():
 	# Connect button signals
 	connect_button.pressed.connect(_on_connect_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
-	prev_style_button.pressed.connect(_on_prev_style_pressed)
-	next_style_button.pressed.connect(_on_next_style_pressed)
 	
 	# Update status
 	update_status("Ready to connect")
@@ -61,20 +57,14 @@ func _ready():
 
 func _on_quit_button_pressed():
 	if is_connected:
-		disconnect_from_server()  # pastikan koneksi diputus dulu biar bersih
+		disconnect_from_server()
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
-func _on_prev_style_pressed():
+func _on_style_button_pressed(style_name: String):
 	if is_connected:
-		var message = "PREV_HAIR".to_utf8_buffer()
+		var message = ("SET_HAIR:" + style_name).to_utf8_buffer()
 		udp_client.put_packet(message)
-		print("Mengirim perintah: PREV_HAIR")
-
-func _on_next_style_pressed():
-	if is_connected:
-		var message = "NEXT_HAIR".to_utf8_buffer()
-		udp_client.put_packet(message)
-		print("Mengirim perintah: NEXT_HAIR")
+		print("Mengirim perintah: SET_HAIR:", style_name)
 
 func _process(delta):
 	if is_connected:
@@ -256,7 +246,7 @@ func assemble_and_display_frame(sequence_number: int):
 	# Debug info setiap 30 frame
 	if frames_completed % 30 == 0:
 		var drop_rate = float(frames_dropped) / float(frames_completed + frames_dropped) * 100.0
-		print("📊 Frame ", sequence_number, " completed. Drop rate: %.1f%%" % drop_rate)
+		print("📊 Frame ", sequence_number, " completed.\nDrop rate: %.1f%%" % drop_rate)
 
 func cleanup_old_frames():
 	var current_time = Time.get_ticks_msec() / 1000.0

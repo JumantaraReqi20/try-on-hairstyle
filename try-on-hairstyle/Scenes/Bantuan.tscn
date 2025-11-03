@@ -49,6 +49,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7aj0r")
 
 [node name="Back" type="Button" parent="."]
+layout_mode = 0
 offset_left = 960.0
 offset_top = 27.0
 offset_right = 1109.0
