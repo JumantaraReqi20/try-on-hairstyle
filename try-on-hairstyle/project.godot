@@ -11,10 +11,18 @@ config_version=5
 [application]
 
 config/name="try-on-hairstyle"
-run/main_scene="res://Scenes/webcam_client_udp.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://Scripts/scene_manager.gd"
 
 [dotnet]
 
 project/assembly_name="try-on-hairstyle"
+
+[editor]
+
+version_control/autoload_on_startup=true
