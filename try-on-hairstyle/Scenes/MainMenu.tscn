@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://lkk4ubl64qow"]
 
-[ext_resource type="Script" uid="uid://dlw0lvyi6ia5x" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
 [ext_resource type="Texture2D" uid="uid://bc3337p7v7hft" path="res://Assets/main-menu-bg.png" id="2_1cyb0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s12vr"]
@@ -79,15 +79,15 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa4fc"]
-bg_color = Color(0.907942, 0.907942, 0.907942, 0.345098)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he4qy"]
+bg_color = Color(0.564706, 0.00784314, 0.00784314, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2hnj"]
-bg_color = Color(0.564706, 0.00784314, 0.00784314, 1)
+bg_color = Color(0.856546, 0, 0.172354, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -162,7 +162,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_oa4fc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_he4qy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w2hnj")
 text = "Quit

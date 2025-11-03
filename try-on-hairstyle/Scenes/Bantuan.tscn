@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://sxoelmp5gtpv"]
+[gd_scene load_steps=7 format=3 uid="uid://sxoelmp5gtpv"]
 
-[ext_resource type="Script" uid="uid://dwtko88dfppdt" path="res://Scripts/bantuan.gd" id="1_gpc5q"]
+[ext_resource type="Script" path="res://Scripts/bantuan.gd" id="1_gpc5q"]
+[ext_resource type="Texture2D" uid="uid://ta1mdcgfyrl6" path="res://Assets/help-bg.png" id="2_tymu1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7aj0r"]
 modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
@@ -61,5 +62,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_yrbrj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hrerf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dq00b")
 text = "Back"
+
+[node name="Help-bg" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(576, 323.5)
+scale = Vector2(0.24, 0.202813)
+texture = ExtResource("2_tymu1")
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
