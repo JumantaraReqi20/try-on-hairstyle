@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://2asq8iaoegxj"]
 
-[ext_resource type="Script" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
-[ext_resource type="Shader" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
+[ext_resource type="Script" uid="uid://cs1naqvlukefv" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
+[ext_resource type="Shader" uid="uid://bk3hemnl4wb03" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
 [ext_resource type="Texture2D" uid="uid://bclrdw5307uh2" path="res://Assets/webcam-disconnected.png" id="3_phcxq"]
 [ext_resource type="Texture2D" uid="uid://dn8g00lhujf23" path="res://Assets/trifur-barber.png" id="4_l4pri"]
 
@@ -226,7 +226,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
-text = "Asgar"
+text = "Two Block - Comma"
 
 [node name="StyleButton2" type="Button" parent="StyleChooser"]
 layout_mode = 2
@@ -235,7 +235,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
-text = "Comma Hair"
+text = "Two Block - Curtain"
 
 [node name="StyleButton3" type="Button" parent="StyleChooser"]
 layout_mode = 2
@@ -244,7 +244,16 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
-text = "French Crop"
+text = "Two Block - Straight Fringe"
+
+[node name="StyleButton4" type="Button" parent="StyleChooser"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
+text = "Undercut - Slick Back"
 
 [node name="InfoPanel" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -297,6 +306,7 @@ position = Vector2(50.125, 37.625)
 scale = Vector2(0.112256, 0.105748)
 texture = ExtResource("4_l4pri")
 
-[connection signal="pressed" from="StyleChooser/StyleButton1" to="." method="_on_style_button_pressed" binds= ["asgar"]]
-[connection signal="pressed" from="StyleChooser/StyleButton2" to="." method="_on_style_button_pressed" binds= ["commaHair"]]
-[connection signal="pressed" from="StyleChooser/StyleButton3" to="." method="_on_style_button_pressed" binds= ["frenchCrop"]]
+[connection signal="pressed" from="StyleChooser/StyleButton1" to="." method="_on_style_button_pressed" binds= ["twoBlockComma"]]
+[connection signal="pressed" from="StyleChooser/StyleButton2" to="." method="_on_style_button_pressed" binds= ["twoBlockCurtain"]]
+[connection signal="pressed" from="StyleChooser/StyleButton3" to="." method="_on_style_button_pressed" binds= ["twoBlockStraightFringe"]]
+[connection signal="pressed" from="StyleChooser/StyleButton4" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]

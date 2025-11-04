@@ -58,8 +58,8 @@ func _ready():
 func _on_quit_button_pressed():
 	if is_connected:
 		disconnect_from_server()
-	if SoundManager and SoundManager.get_node("MusicPlayer").is_playing():
-		SoundManager.get_node("MusicPlayer").stop()
+	#if SoundManager and SoundManager.get_node("MusicPlayer").is_playing():
+		#SoundManager.get_node("MusicPlayer").stop()
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
 func _on_style_button_pressed(style_name: String):
