@@ -12,9 +12,14 @@ func _ready() -> void:
 	$VBoxContainer/Help.pressed.connect(_on_help_pressed)
 	$VBoxContainer/Quit.pressed.connect(_on_quit_pressed)
 
+	if SoundManager and not SoundManager.get_node("MusicPlayer").is_playing():
+		SoundManager.get_node("MusicPlayer").stop()
+
 
 # Fungsi saat tombol "Start" ditekan - navigasi ke scene utama
 func _on_start_pressed() -> void:
+	if SoundManager and not SoundManager.get_node("MusicPlayer").is_playing():
+		SoundManager.get_node("MusicPlayer").play()
 	get_tree().change_scene_to_file(TRYON_SCENE_PATH)
 
 
