@@ -292,8 +292,8 @@ class SVM_WebcamServerUDP:
                             frame,
                             active_hairstyle,
                             current_box_to_draw,
-                            y_offset_factor=0.45,
-                            scale_factor=1
+                            y_offset_factor=0.3,
+                            scale_factor=1.6
                         )
                 
                 # Encode frame (yang sudah di-overlay) ke JPEG
