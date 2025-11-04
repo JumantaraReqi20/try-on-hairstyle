@@ -7,9 +7,6 @@ extends Control
 @onready var no_signal_label: Label = $VideoContainer/NoSignalLabel
 @onready var udp_mode_label: Label = $VideoContainer/UDPMode
 @onready var webcam_disconnected_icon: Sprite2D = $"VideoContainer/Webcam-disconnected"
-@onready var fps_label: Label = $InfoPanel/FPSLabel
-@onready var resolution_label: Label = $InfoPanel/ResolutionLabel
-@onready var data_rate_label: Label = $InfoPanel/DataRateLabel
 
 var udp_client: PacketPeerUDP
 var is_connected: bool = false
@@ -154,7 +151,7 @@ func disconnect_from_server():
 	frame_buffers.clear()
 	
 	update_status("Disconnected")
-	connect_button.text = "Connect to Server"
+	connect_button.text = "Connect"
 	
 	# Clear texture and show no signal
 	texture_rect.texture = null
@@ -286,8 +283,8 @@ func display_frame(frame_data: PackedByteArray):
 		udp_mode_label.visible = false
 		webcam_disconnected_icon.visible = false
 		
-		# Update resolution info
-		resolution_label.text = "Resolution: %dx%d" % [image.get_width(), image.get_height()]
+		# Print resolution info ke console
+		print("Resolution: %dx%d" % [image.get_width(), image.get_height()])
 		
 		# Update frame count
 		frame_count += 1
@@ -313,17 +310,14 @@ func update_performance_metrics(delta: float):
 
 func update_info_display():
 	if is_connected:
-		fps_label.text = "FPS: %.1f" % current_fps
-		data_rate_label.text = "Rate: %.1f KB/s" % current_data_rate
+		print("Connected")
 		
 		# Tambahkan statistik packet
 		if frames_completed + frames_dropped > 0:
 			var drop_rate = float(frames_dropped) / float(frames_completed + frames_dropped) * 100.0
-			status_label.text = "Status: Connected - Packets: %d, Drop: %.1f%%" % [packets_received, drop_rate]
+			status_label.text = "Status: Connected"
 	else:
-		fps_label.text = "FPS: --"
-		resolution_label.text = "Resolution: --"
-		data_rate_label.text = "Rate: -- KB/s"
+		print("Disconnected - No performance data")
 
 func update_status(message: String):
 	status_label.text = "Status: " + message

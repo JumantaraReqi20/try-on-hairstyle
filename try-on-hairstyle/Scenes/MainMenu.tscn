@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://lkk4ubl64qow"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
-[ext_resource type="Texture2D" uid="uid://bc3337p7v7hft" path="res://Assets/main-menu-bg.png" id="2_1cyb0"]
+[ext_resource type="Texture2D" uid="uid://c7xypc8efd1o7" path="res://Assets/main-menu-bg-updated.png" id="2_x5xcq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s12vr"]
 modulate_color = Color(0.779291, 0.779291, 0.779291, 1)
@@ -177,4 +177,4 @@ offset_bottom = 23.0
 z_index = -10
 position = Vector2(576, 324)
 scale = Vector2(0.239583, 0.2025)
-texture = ExtResource("2_1cyb0")
+texture = ExtResource("2_x5xcq")
