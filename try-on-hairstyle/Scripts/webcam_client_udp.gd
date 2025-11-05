@@ -7,6 +7,7 @@ extends Control
 @onready var no_signal_label: Label = $VideoContainer/NoSignalLabel
 @onready var udp_mode_label: Label = $VideoContainer/UDPMode
 @onready var webcam_disconnected_icon: Sprite2D = $"VideoContainer/Webcam-disconnected"
+@onready var frame_trifur_barber: Sprite2D = $"VideoContainer/Frame-trifur-barber"
 
 var udp_client: PacketPeerUDP
 var is_connected: bool = false
@@ -47,6 +48,7 @@ func _ready():
 	no_signal_label.visible = true
 	udp_mode_label.visible = true
 	webcam_disconnected_icon.visible = true
+	frame_trifur_barber.visible = false
 	
 	# Debug info
 	print("🎮 Godot UDP client initialized")
@@ -160,6 +162,7 @@ func disconnect_from_server():
 	no_signal_label.visible = true
 	udp_mode_label.visible = true
 	webcam_disconnected_icon.visible = true
+	frame_trifur_barber.visible = true
 	
 	# Reset performance metrics
 	frame_count = 0
@@ -284,6 +287,7 @@ func display_frame(frame_data: PackedByteArray):
 		no_signal_label.visible = false
 		udp_mode_label.visible = false
 		webcam_disconnected_icon.visible = false
+		frame_trifur_barber.visible = true
 		
 		# Print resolution info ke console
 		print("Resolution: %dx%d" % [image.get_width(), image.get_height()])

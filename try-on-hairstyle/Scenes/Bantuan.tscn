@@ -51,13 +51,13 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_7aj0r")
 
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
-offset_left = 960.0
+offset_left = 1660.0
 offset_top = 27.0
-offset_right = 1109.0
-offset_bottom = 76.0
+offset_right = 1853.0
+offset_bottom = 100.0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_yrbrj")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hrerf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dq00b")
@@ -65,8 +65,8 @@ text = "Back"
 
 [node name="Help-bg" type="Sprite2D" parent="."]
 z_index = -10
-position = Vector2(576, 323.5)
-scale = Vector2(0.24, 0.202813)
+position = Vector2(958, 641.5)
+scale = Vector2(0.399167, 0.401563)
 texture = ExtResource("2_tymu1")
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
