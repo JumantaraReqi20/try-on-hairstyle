@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://2asq8iaoegxj"]
 
-[ext_resource type="Script" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
-[ext_resource type="Shader" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
+[ext_resource type="Script" uid="uid://cs1naqvlukefv" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
+[ext_resource type="Shader" uid="uid://bk3hemnl4wb03" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
 [ext_resource type="Texture2D" uid="uid://bclrdw5307uh2" path="res://Assets/webcam-disconnected.png" id="3_phcxq"]
 [ext_resource type="Texture2D" uid="uid://dn8g00lhujf23" path="res://Assets/trifur-barber.png" id="4_l4pri"]
 [ext_resource type="Texture2D" uid="uid://da27rlvdx7gke" path="res://Assets/frame-trifur-barber.png" id="5_wcud6"]
@@ -283,6 +283,7 @@ text = "Undercut - Slick Back"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+<<<<<<< Updated upstream
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
@@ -293,10 +294,14 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
+=======
+theme_override_font_sizes/font_size = 20
+>>>>>>> Stashed changes
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
 text = "Mid Fade - Natural Top"
 
+<<<<<<< Updated upstream
 [node name="StyleButton7" type="Button" parent="StyleChooser"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -305,11 +310,21 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
 text = "Wolf Cut - Messy Waves"
+=======
+[node name="Trifur-barber-plain" type="Sprite2D" parent="."]
+position = Vector2(50.125, 37.625)
+scale = Vector2(0.112256, 0.105748)
+texture = ExtResource("4_l4pri")
+>>>>>>> Stashed changes
 
 [connection signal="pressed" from="StyleChooser/StyleButton1" to="." method="_on_style_button_pressed" binds= ["twoBlockComma"]]
 [connection signal="pressed" from="StyleChooser/StyleButton2" to="." method="_on_style_button_pressed" binds= ["twoBlockCurtain"]]
 [connection signal="pressed" from="StyleChooser/StyleButton3" to="." method="_on_style_button_pressed" binds= ["twoBlockStraightFringe"]]
 [connection signal="pressed" from="StyleChooser/StyleButton4" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
+<<<<<<< Updated upstream
 [connection signal="pressed" from="StyleChooser/StyleButton5" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
 [connection signal="pressed" from="StyleChooser/StyleButton6" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
 [connection signal="pressed" from="StyleChooser/StyleButton7" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
+=======
+[connection signal="pressed" from="StyleChooser/StyleButton5" to="." method="_on_style_button_pressed" binds= ["midFadeNaturalTop"]]
+>>>>>>> Stashed changes

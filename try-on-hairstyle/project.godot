@@ -22,8 +22,12 @@ SoundManager="*res://Scenes/SoundManager.tscn"
 
 [display]
 
+<<<<<<< Updated upstream
 window/size/viewport_width=1920
 window/size/viewport_height=1280
+=======
+window/stretch/mode="viewport"
+>>>>>>> Stashed changes
 
 [dotnet]
 

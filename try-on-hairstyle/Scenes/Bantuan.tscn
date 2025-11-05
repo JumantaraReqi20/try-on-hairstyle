@@ -1,35 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://sxoelmp5gtpv"]
+[gd_scene load_steps=8 format=3 uid="uid://sxoelmp5gtpv"]
 
-[ext_resource type="Script" path="res://Scripts/bantuan.gd" id="1_gpc5q"]
-[ext_resource type="Texture2D" uid="uid://ta1mdcgfyrl6" path="res://Assets/help-bg.png" id="2_tymu1"]
+[ext_resource type="Script" uid="uid://dwtko88dfppdt" path="res://Scripts/bantuan.gd" id="1_gpc5q"]
+[ext_resource type="Texture2D" uid="uid://bmpxei8fhqeca" path="res://Assets/global-bg.png" id="2_hrerf"]
+[ext_resource type="Texture2D" uid="uid://2l6yaqovnq7r" path="res://Assets/help-box.png" id="3_dq00b"]
+[ext_resource type="Texture2D" uid="uid://bfh4pq8777fqj" path="res://Assets/help-title.png" id="3_sb607"]
+[ext_resource type="Texture2D" uid="uid://b4eonr1x6f1nv" path="res://Assets/back-default.png" id="4_rhcbj"]
+[ext_resource type="Texture2D" uid="uid://u1abpc2otmq0" path="res://Assets/back-hover.png" id="5_sb607"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7aj0r"]
 modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrbrj"]
-bg_color = Color(0.907942, 0.907942, 0.907942, 0.345098)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrerf"]
-bg_color = Color(0, 0, 0, 0.345098)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dq00b"]
-bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="Bantuan" type="Control"]
 layout_mode = 3
@@ -49,8 +28,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7aj0r")
 
-[node name="Back" type="Button" parent="."]
+[node name="Help-bg" type="TextureRect" parent="Panel"]
 layout_mode = 0
+<<<<<<< Updated upstream
 offset_left = 1660.0
 offset_top = 27.0
 offset_right = 1853.0
@@ -68,5 +48,50 @@ z_index = -10
 position = Vector2(958, 641.5)
 scale = Vector2(0.399167, 0.401563)
 texture = ExtResource("2_tymu1")
+=======
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_hrerf")
 
-[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[node name="Help-title" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = 36.0
+offset_right = 168.0
+offset_bottom = 187.0
+grow_horizontal = 2
+texture = ExtResource("3_sb607")
+>>>>>>> Stashed changes
+
+[node name="Help-box" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -497.5
+offset_top = -106.0
+offset_right = 497.5
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dq00b")
+
+[node name="Back" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_top = 33.0
+offset_right = -20.0
+offset_bottom = 103.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_rhcbj")
+texture_hover = ExtResource("5_sb607")
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]

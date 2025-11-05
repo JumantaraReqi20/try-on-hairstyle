@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpr0tr8u23trn"]
 
 [ext_resource type="Texture2D" uid="uid://cce0042dnwqql" path="res://Assets/credit-bg.png" id="1_xgu3v"]
-[ext_resource type="Script" path="res://Scripts/credit.gd" id="1_xpddk"]
+[ext_resource type="Script" uid="uid://c5exm0mtxnapn" path="res://Scripts/credit.gd" id="1_xpddk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p3k7"]
 modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
