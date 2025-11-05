@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://sxoelmp5gtpv"]
 
 [ext_resource type="Script" uid="uid://dwtko88dfppdt" path="res://Scripts/bantuan.gd" id="1_gpc5q"]
-[ext_resource type="Texture2D" uid="uid://bmpxei8fhqeca" path="res://Assets/global-bg.png" id="2_hrerf"]
+[ext_resource type="Texture2D" uid="uid://bmpxei8fhqeca" path="res://Assets/global-bg.png" id="2_sb607"]
 [ext_resource type="Texture2D" uid="uid://2l6yaqovnq7r" path="res://Assets/help-box.png" id="3_dq00b"]
 [ext_resource type="Texture2D" uid="uid://bfh4pq8777fqj" path="res://Assets/help-title.png" id="3_sb607"]
 [ext_resource type="Texture2D" uid="uid://b4eonr1x6f1nv" path="res://Assets/back-default.png" id="4_rhcbj"]
@@ -29,29 +29,10 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_7aj0r")
 
 [node name="Help-bg" type="TextureRect" parent="Panel"]
-layout_mode = 0
-<<<<<<< Updated upstream
-offset_left = 1660.0
-offset_top = 27.0
-offset_right = 1853.0
-offset_bottom = 100.0
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_yrbrj")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hrerf")
-theme_override_styles/normal = SubResource("StyleBoxFlat_dq00b")
-text = "Back"
-
-[node name="Help-bg" type="Sprite2D" parent="."]
-z_index = -10
-position = Vector2(958, 641.5)
-scale = Vector2(0.399167, 0.401563)
-texture = ExtResource("2_tymu1")
-=======
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = ExtResource("2_hrerf")
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_sb607")
 
 [node name="Help-title" type="TextureRect" parent="Panel"]
 layout_mode = 1
@@ -64,7 +45,6 @@ offset_right = 168.0
 offset_bottom = 187.0
 grow_horizontal = 2
 texture = ExtResource("3_sb607")
->>>>>>> Stashed changes
 
 [node name="Help-box" type="TextureRect" parent="Panel"]
 layout_mode = 1
@@ -74,9 +54,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -497.5
-offset_top = -106.0
+offset_top = -96.0
 offset_right = 497.5
-offset_bottom = 208.0
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_dq00b")

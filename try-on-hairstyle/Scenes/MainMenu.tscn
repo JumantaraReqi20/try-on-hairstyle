@@ -1,97 +1,20 @@
-[gd_scene load_steps=13 format=3 uid="uid://lkk4ubl64qow"]
+[gd_scene load_steps=14 format=3 uid="uid://lkk4ubl64qow"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
-[ext_resource type="Texture2D" uid="uid://c7xypc8efd1o7" path="res://Assets/main-menu-bg-updated.png" id="2_x5xcq"]
+[ext_resource type="Script" uid="uid://dlw0lvyi6ia5x" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
+[ext_resource type="Texture2D" uid="uid://bmpxei8fhqeca" path="res://Assets/global-bg.png" id="2_853f1"]
+[ext_resource type="Texture2D" uid="uid://5s1ucsa7awn4" path="res://Assets/menu-title.png" id="3_rrcx7"]
+[ext_resource type="Texture2D" uid="uid://dgdp4xtvtsgqw" path="res://Assets/start-default.png" id="4_fh7cp"]
+[ext_resource type="Texture2D" uid="uid://b07cne4csc04o" path="res://Assets/start-hover.png" id="5_8e205"]
+[ext_resource type="Texture2D" uid="uid://b265bbr8p58nc" path="res://Assets/credit-default.png" id="6_7467j"]
+[ext_resource type="Texture2D" uid="uid://tk3x2chtkoe8" path="res://Assets/credit-hover.png" id="7_2x1g0"]
+[ext_resource type="Texture2D" uid="uid://cjmq48lb8rwed" path="res://Assets/help-default.png" id="8_riqfo"]
+[ext_resource type="Texture2D" uid="uid://b2myg4utdu1fl" path="res://Assets/help-hover.png" id="9_yxkem"]
+[ext_resource type="Texture2D" uid="uid://ded0xn02i207f" path="res://Assets/quit-default.png" id="10_7v4os"]
+[ext_resource type="Texture2D" uid="uid://dd8kpune1x8vn" path="res://Assets/quit-hover.png" id="11_pjscj"]
+[ext_resource type="Texture2D" uid="uid://ljw4pyilmk4e" path="res://Assets/menu-icon.png" id="12_m7n2d"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s12vr"]
 modulate_color = Color(0.779291, 0.779291, 0.779291, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq3ph"]
-bg_color = Color(0.0470588, 0.803922, 0.627451, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77rrs"]
-bg_color = Color(0, 0, 0, 0.345098)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvbhd"]
-bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_quts0"]
-bg_color = Color(0.0470588, 0.803922, 0.627451, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rmia"]
-bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t26yb"]
-bg_color = Color(0.0470588, 0.803922, 0.627451, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3tk1"]
-bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he4qy"]
-bg_color = Color(0.564706, 0.00784314, 0.00784314, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2hnj"]
-bg_color = Color(0.856546, 0, 0.172354, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -111,70 +34,68 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_s12vr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Menu-bg" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_853f1")
+
+[node name="Menu-title" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -466.0
+offset_top = 24.0
+offset_right = 466.0
+offset_bottom = 225.0
+grow_horizontal = 2
+texture = ExtResource("3_rrcx7")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 158.0
-offset_top = -97.0
-offset_right = 803.0
-offset_bottom = 404.0
+offset_left = 142.0
+offset_top = -98.0
+offset_right = 622.0
+offset_bottom = 456.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = -10
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="TextureButton" parent="Panel/ButtonContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxFlat_jq3ph")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
-theme_override_styles/normal = SubResource("StyleBoxFlat_qvbhd")
-text = "Start"
+texture_normal = ExtResource("4_fh7cp")
+texture_hover = ExtResource("5_8e205")
 
-[node name="Credit" type="Button" parent="VBoxContainer"]
+[node name="Credit" type="TextureButton" parent="Panel/ButtonContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxFlat_quts0")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
-theme_override_styles/normal = SubResource("StyleBoxFlat_3rmia")
-text = "Credit
-"
+texture_normal = ExtResource("6_7467j")
+texture_hover = ExtResource("7_2x1g0")
 
-[node name="Help" type="Button" parent="VBoxContainer"]
+[node name="Help" type="TextureButton" parent="Panel/ButtonContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxFlat_t26yb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
-theme_override_styles/normal = SubResource("StyleBoxFlat_u3tk1")
-text = "Help"
+texture_normal = ExtResource("8_riqfo")
+texture_hover = ExtResource("9_yxkem")
 
-[node name="Quit" type="Button" parent="VBoxContainer"]
+[node name="Quit" type="TextureButton" parent="Panel/ButtonContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/hover = SubResource("StyleBoxFlat_he4qy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
-theme_override_styles/normal = SubResource("StyleBoxFlat_w2hnj")
-text = "Quit
-"
+texture_normal = ExtResource("10_7v4os")
+texture_hover = ExtResource("11_pjscj")
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 252.0
+offset_right = 559.0
+offset_bottom = 754.0
+texture = ExtResource("12_m7n2d")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="Main-menu-bg" type="Sprite2D" parent="."]
-z_index = -10
-position = Vector2(961, 639)
-scale = Vector2(0.4, 0.399375)
-texture = ExtResource("2_x5xcq")

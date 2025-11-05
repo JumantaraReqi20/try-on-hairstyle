@@ -1,13 +1,13 @@
 extends Control
 
-@onready var texture_rect: TextureRect = $VideoContainer/TextureRect
+@onready var texture_rect: TextureRect = $VideoContainer/TextureRect2
 @onready var status_label: Label = $StatusLabel
 @onready var connect_button: Button = $ControlPanel/ConnectButton
 @onready var quit_button: Button = $ControlPanel/QuitButton
-@onready var no_signal_label: Label = $VideoContainer/NoSignalLabel
-@onready var udp_mode_label: Label = $VideoContainer/UDPMode
-@onready var webcam_disconnected_icon: Sprite2D = $"VideoContainer/Webcam-disconnected"
-@onready var frame_trifur_barber: Sprite2D = $"VideoContainer/Frame-trifur-barber"
+@onready var no_signal_label: Label = $VideoContainer/VBoxContainer/NoSignalLabel
+@onready var udp_mode_label: Label = $VideoContainer/VBoxContainer/UDPMode
+@onready var webcam_disconnected_icon: TextureRect = $"VideoContainer/VBoxContainer/TextureRect"
+@onready var frame_trifur_barber: TextureRect = $"VideoContainer/TextureRect"
 
 var udp_client: PacketPeerUDP
 var is_connected: bool = false

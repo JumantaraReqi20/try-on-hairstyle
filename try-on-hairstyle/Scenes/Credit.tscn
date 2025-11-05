@@ -1,35 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpr0tr8u23trn"]
+[gd_scene load_steps=8 format=3 uid="uid://dpr0tr8u23trn"]
 
-[ext_resource type="Texture2D" uid="uid://cce0042dnwqql" path="res://Assets/credit-bg.png" id="1_xgu3v"]
 [ext_resource type="Script" uid="uid://c5exm0mtxnapn" path="res://Scripts/credit.gd" id="1_xpddk"]
+[ext_resource type="Texture2D" uid="uid://bmpxei8fhqeca" path="res://Assets/global-bg.png" id="2_m0dbt"]
+[ext_resource type="Texture2D" uid="uid://b4eonr1x6f1nv" path="res://Assets/back-default.png" id="3_7gwq5"]
+[ext_resource type="Texture2D" uid="uid://dnat5ml650cud" path="res://Assets/credit-title.png" id="3_wwm1b"]
+[ext_resource type="Texture2D" uid="uid://cuxomi6kfgmmo" path="res://Assets/credit-box.png" id="4_7snrw"]
+[ext_resource type="Texture2D" uid="uid://u1abpc2otmq0" path="res://Assets/back-hover.png" id="4_wwm1b"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p3k7"]
 modulate_color = Color(0.780392, 0.780392, 0.780392, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a4khf"]
-bg_color = Color(0.907942, 0.907942, 0.907942, 0.345098)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwsny"]
-bg_color = Color(0, 0, 0, 0.345098)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ko6u1"]
-bg_color = Color(0.0509804, 0.0941176, 0.160784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [node name="Credit" type="Control"]
 layout_mode = 3
@@ -49,24 +28,51 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_2p3k7")
 
-[node name="Back" type="Button" parent="."]
+[node name="Credit-bg" type="TextureRect" parent="Panel"]
 layout_mode = 0
-offset_left = 1722.0
-offset_top = 27.0
-offset_right = 1885.0
-offset_bottom = 96.0
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_a4khf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hwsny")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ko6u1")
-text = "Back"
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_m0dbt")
 
-[node name="Credit-bg" type="Sprite2D" parent="."]
-z_index = -10
-position = Vector2(959.5, 641)
-scale = Vector2(1.24935, 1.25195)
-texture = ExtResource("1_xgu3v")
+[node name="Credit-title" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.0
+offset_top = 36.0
+offset_right = 168.0
+offset_bottom = 187.0
+grow_horizontal = 2
+texture = ExtResource("3_wwm1b")
 
-[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[node name="Credit-box" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -485.0
+offset_top = -213.0
+offset_right = 583.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_7snrw")
+
+[node name="Back" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -232.0
+offset_top = 33.0
+offset_right = -20.0
+offset_bottom = 103.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_7gwq5")
+texture_hover = ExtResource("4_wwm1b")
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]

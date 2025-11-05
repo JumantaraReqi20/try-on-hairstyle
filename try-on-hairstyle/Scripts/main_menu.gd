@@ -7,10 +7,10 @@ const BANTUAN_SCENE_PATH := "res://Scenes/Bantuan.tscn"
 
 func _ready() -> void:
 	# Hubungkan tombol-tombol dengan fungsi event handler masing-masing
-	$VBoxContainer/Start.pressed.connect(_on_start_pressed)
-	$VBoxContainer/Credit.pressed.connect(_on_credit_pressed)
-	$VBoxContainer/Help.pressed.connect(_on_help_pressed)
-	$VBoxContainer/Quit.pressed.connect(_on_quit_pressed)
+	$Panel/ButtonContainer/Start.pressed.connect(_on_start_pressed)
+	$Panel/ButtonContainer/Credit.pressed.connect(_on_credit_pressed)
+	$Panel/ButtonContainer/Help.pressed.connect(_on_help_pressed)
+	$Panel/ButtonContainer/Quit.pressed.connect(_on_quit_pressed)
 
 	if SoundManager and not SoundManager.get_node("MusicPlayer").is_playing():
 		SoundManager.get_node("MusicPlayer").stop()
