@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://2asq8iaoegxj"]
+[gd_scene load_steps=15 format=3 uid="uid://2asq8iaoegxj"]
 
 [ext_resource type="Script" path="res://Scripts/webcam_client_udp.gd" id="1_2bigl"]
 [ext_resource type="Shader" path="res://Scripts/webcam_client_udp.gdshader" id="2_l2ytg"]
 [ext_resource type="Texture2D" uid="uid://bclrdw5307uh2" path="res://Assets/webcam-disconnected.png" id="3_phcxq"]
 [ext_resource type="Texture2D" uid="uid://dn8g00lhujf23" path="res://Assets/trifur-barber.png" id="4_l4pri"]
+[ext_resource type="Texture2D" uid="uid://da27rlvdx7gke" path="res://Assets/frame-trifur-barber.png" id="5_wcud6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yfvd"]
 bg_color = Color(0.145098, 0.168627, 0.207843, 1)
@@ -13,7 +14,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="LabelSettings" id="LabelSettings_tilv7"]
-font_size = 11
+font_size = 20
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s28yg"]
 shader = ExtResource("2_l2ytg")
@@ -88,11 +89,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -496.0
-offset_top = 27.0
-offset_right = -196.0
-offset_bottom = 57.0
+offset_left = -832.0
+offset_top = 37.0
+offset_right = -532.0
+offset_bottom = 86.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
 text = "Trifur Barber"
 
 [node name="Title2" type="Label" parent="."]
@@ -100,19 +102,21 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 339.0
-offset_top = 87.0
-offset_right = 639.0
-offset_bottom = 117.0
+offset_left = 525.5
+offset_top = 173.0
+offset_right = 908.5
+offset_bottom = 222.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 35
 text = "Choose Your Hairstyle!"
+horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 906.0
-offset_top = 541.0
-offset_right = 1456.0
-offset_bottom = 566.0
+offset_left = 874.0
+offset_top = 539.0
+offset_right = 1189.0
+offset_bottom = 571.0
 text = "Status: Disconnected"
 
 [node name="VideoContainer" type="Panel" parent="."]
@@ -122,10 +126,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -548.0
-offset_top = -248.0
-offset_right = 316.0
-offset_bottom = 289.0
+offset_left = -887.0
+offset_top = -477.0
+offset_right = 466.0
+offset_bottom = 529.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3yfvd")
@@ -147,12 +151,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 259.0
-offset_top = 191.25
-offset_right = -235.0
-offset_bottom = -175.75
+offset_left = 521.0
+offset_top = 512.0
+offset_right = -533.0
+offset_bottom = -452.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 30
 text = "No Signal"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -162,10 +167,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 272.0
-offset_top = 212.25
-offset_right = -247.0
-offset_bottom = -152.75
+offset_left = 586.0
+offset_top = 541.0
+offset_right = -595.0
+offset_bottom = -413.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "(UDP Mode)"
@@ -175,9 +180,14 @@ vertical_alignment = 1
 
 [node name="Webcam-disconnected" type="Sprite2D" parent="VideoContainer"]
 material = SubResource("ShaderMaterial_s28yg")
-position = Vector2(444, 233.25)
-scale = Vector2(0.105469, 0.0947266)
+position = Vector2(673, 442)
+scale = Vector2(0.285156, 0.267822)
 texture = ExtResource("3_phcxq")
+
+[node name="Frame-trifur-barber" type="Sprite2D" parent="VideoContainer"]
+position = Vector2(665.5, 502)
+scale = Vector2(2.29553, 2.65829)
+texture = ExtResource("5_wcud6")
 
 [node name="ControlPanel" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -186,16 +196,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 327.0
-offset_top = -68.0
-offset_right = 567.0
-offset_bottom = -37.0
+offset_left = 525.0
+offset_top = -160.0
+offset_right = 915.0
+offset_bottom = -103.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ConnectButton" type="Button" parent="ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("StyleBoxFlat_r2so3")
 theme_override_styles/normal = SubResource("StyleBoxFlat_im1o3")
 text = "Connect"
@@ -203,30 +214,40 @@ text = "Connect"
 [node name="QuitButton" type="Button" parent="ControlPanel"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("StyleBoxFlat_sw7vf")
 theme_override_styles/normal = SubResource("StyleBoxFlat_xoy0q")
 text = "Quit"
 
+[node name="Trifur-barber-plain" type="Sprite2D" parent="."]
+position = Vector2(70.125, 60.125)
+scale = Vector2(0.199024, 0.203362)
+texture = ExtResource("4_l4pri")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+offset_left = 1481.0
+offset_top = 255.0
+offset_right = 1881.0
+offset_bottom = 640.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+
 [node name="StyleChooser" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 337.0
-offset_top = -521.0
-offset_right = 564.0
-offset_bottom = -348.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
+offset_left = 1484.0
+offset_top = 255.0
+offset_right = 1879.0
+offset_bottom = 878.0
 theme_override_constants/separation = 10
 
 [node name="StyleButton1" type="Button" parent="StyleChooser"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
 text = "Two Block - Comma"
@@ -235,7 +256,7 @@ text = "Two Block - Comma"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
 text = "Two Block - Curtain"
@@ -244,26 +265,51 @@ text = "Two Block - Curtain"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
-text = "Two Block - Straight Fringe"
+text = "Two Block - S Fringe"
 
 [node name="StyleButton4" type="Button" parent="StyleChooser"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
 theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
 text = "Undercut - Slick Back"
 
-[node name="Trifur-barber-plain" type="Sprite2D" parent="."]
-position = Vector2(50.125, 37.625)
-scale = Vector2(0.112256, 0.105748)
-texture = ExtResource("4_l4pri")
+[node name="StyleButton5" type="Button" parent="StyleChooser"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
+text = "Low Fade - Wavy Top"
+
+[node name="StyleButton6" type="Button" parent="StyleChooser"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
+text = "Mid Fade - Natural Top"
+
+[node name="StyleButton7" type="Button" parent="StyleChooser"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vfu17")
+theme_override_styles/normal = SubResource("StyleBoxFlat_47phr")
+text = "Wolf Cut - Messy Waves"
 
 [connection signal="pressed" from="StyleChooser/StyleButton1" to="." method="_on_style_button_pressed" binds= ["twoBlockComma"]]
 [connection signal="pressed" from="StyleChooser/StyleButton2" to="." method="_on_style_button_pressed" binds= ["twoBlockCurtain"]]
 [connection signal="pressed" from="StyleChooser/StyleButton3" to="." method="_on_style_button_pressed" binds= ["twoBlockStraightFringe"]]
 [connection signal="pressed" from="StyleChooser/StyleButton4" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
+[connection signal="pressed" from="StyleChooser/StyleButton5" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
+[connection signal="pressed" from="StyleChooser/StyleButton6" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]
+[connection signal="pressed" from="StyleChooser/StyleButton7" to="." method="_on_style_button_pressed" binds= ["undercutSlickBack"]]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://lkk4ubl64qow"]
 
-[ext_resource type="Script" uid="uid://dlw0lvyi6ia5x" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_e1pl5"]
 [ext_resource type="Texture2D" uid="uid://c7xypc8efd1o7" path="res://Assets/main-menu-bg-updated.png" id="2_x5xcq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s12vr"]
@@ -119,9 +119,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 158.0
-offset_top = -65.0
-offset_right = 455.0
-offset_bottom = 158.0
+offset_top = -97.0
+offset_right = 803.0
+offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -130,7 +130,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 theme_override_styles/hover = SubResource("StyleBoxFlat_jq3ph")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qvbhd")
@@ -140,7 +140,7 @@ text = "Start"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 theme_override_styles/hover = SubResource("StyleBoxFlat_quts0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_3rmia")
@@ -151,7 +151,7 @@ text = "Credit
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 theme_override_styles/hover = SubResource("StyleBoxFlat_t26yb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_u3tk1")
@@ -161,7 +161,7 @@ text = "Help"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 theme_override_styles/hover = SubResource("StyleBoxFlat_he4qy")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_77rrs")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w2hnj")
@@ -175,6 +175,6 @@ offset_bottom = 23.0
 
 [node name="Main-menu-bg" type="Sprite2D" parent="."]
 z_index = -10
-position = Vector2(576, 324)
-scale = Vector2(0.239583, 0.2025)
+position = Vector2(961, 639)
+scale = Vector2(0.4, 0.399375)
 texture = ExtResource("2_x5xcq")
